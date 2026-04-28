@@ -27,7 +27,7 @@ const moveGroup = (group, x) => {
   gsap.to(group.position, { x, duration: ANIMATION_DURATION})
 }
 
-const ModelSwitcher = (scale, isMobile) => {
+const ModelSwitcher = ({ scale }) => {
 
   const smallMacbookRef = useRef();
   const largeMacbookRef = useRef();
@@ -40,7 +40,7 @@ const ModelSwitcher = (scale, isMobile) => {
         moveGroup(largeMacbookRef.current, 0);
 
         fadeMeshes(smallMacbookRef.current, 0)
-        fadeMeshes(largeMacbookRef.current, 0)
+        fadeMeshes(largeMacbookRef.current, 1)
     } else {
         moveGroup(smallMacbookRef.current, 0);
         moveGroup(largeMacbookRef.current, OFFSET_DISTANCE);
@@ -55,20 +55,20 @@ const ModelSwitcher = (scale, isMobile) => {
     speed: 1,
     zoom: 1,
     azimuth: [-Infinity, Infinity],
-    config : {mass:1, tension: 0, friction: 26}
+    config : {mass:1, tension: 20, friction: 26}
   }
 
   return (
     <>
       <PresentationControls {...controlsConfig}>
           <group ref={largeMacbookRef}>
-              <MacbookModel16 scale={isMobile ? 0.05 : 0.08} />
+              <MacbookModel16 scale={scale} />
           </group>
       </PresentationControls>
 
       <PresentationControls {...controlsConfig}>
           <group ref={smallMacbookRef}>
-              <MacbookModel14 scale={isMobile ? 0.03 : 0.06} />
+              <MacbookModel14 scale={scale} />
           </group>
       </PresentationControls>
     </>
