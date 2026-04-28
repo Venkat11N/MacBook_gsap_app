@@ -32,7 +32,7 @@ export default function MacbookModel14(props) {
         }
       }
     })
-  }, [color])
+  }, [color, scene])
   
   // Apply color to the main body material
   // if (color && materials.PaletteMaterial001) {
