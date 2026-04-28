@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 
 const DEFAULTS = {
-  color: '#2e2c2e',
+  color: '#2e2e2e',
   scale: 0.08,
 }
 
