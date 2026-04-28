@@ -27,7 +27,7 @@ const moveGroup = (group, x) => {
   gsap.to(group.position, { x, duration: ANIMATION_DURATION})
 }
 
-const ModelSwitcher = ({ scale, isMobile }) => {
+const ModelSwitcher = ({ scale }) => {
 
   const smallMacbookRef = useRef();
   const largeMacbookRef = useRef();
