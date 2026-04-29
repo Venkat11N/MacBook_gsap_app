@@ -1,49 +1,57 @@
-import { features } from "../constants/index";
-import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import { Canvas } from "@react-three/fiber"
+import StudioLights from "./three/StudioLights"
+import { features } from "../constants"
+import clsx from "clsx"
+import { Suspense, useEffect, useRef } from "react"
+import MacbookModel from "./models/Macbook"
+import { useMediaQuery } from "react-responsive"
+import { Html } from "@react-three/drei"
+import useMacbookStore from "../store/index"
 
-gsap.registerPlugin(ScrollTrigger);
+const ModelScroll = () => {
+  const groupRef = useRef(null)
+  const isMobile = useMediaQuery({ query: '(max-width: 1024px'})
+  const {setTexture} = useMacbookStore();
+
+
+  useEffect(() => {
+    
+  }, [])
+  return (
+    <group ref={groupRef}>
+      <Suspense fallback={<Html><h1 className="text-white text-3xl uppercase"></h1></Html>}>
+        <MacbookModel scale={isMobile ? 0.05 : 0.08} position={[0, -1, 0]} />
+      </Suspense>
+    </group>
+  )
+}
 
 const Features = () => {
-  const sectionRef = useRef(null);
-
-  useGSAP(
-    () => {
-      features.forEach((feature) => {
-        const box = sectionRef.current?.querySelector(`.box${feature.id}`);
-        if (box) {
-          gsap.to(box, {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: box,
-              start: "top 85%",
-            },
-          });
-        }
-      });
-    },
-    { scope: sectionRef }
-  );
-
   return (
-    <section id="features" ref={sectionRef}>
-      <h2>Apple Intelligence</h2>
-      <div className="wrapper">
-        {features.map((feature) => (
-          <div key={feature.id} className={`box box${feature.id} ${feature.styles}`}>
-            <img src={feature.icon} alt={feature.highlight} />
-            <h3>{feature.highlight}</h3>
-            <p>{feature.text}</p>
-          </div>
-        ))}
+    <section id="features">
+      <h2>See it all in a new light.</h2>
+
+      <div className="relative">
+        <Canvas id="f-canvas">
+            <StudioLights />
+            <ambientLight intensity={0.5} />
+            <ModelScroll />
+        </Canvas>
+        <div className="absolute inset-0">
+            {features.map((feature, index) => (
+              <div key={index} className={clsx('box', `box${index + 1}, features.styles`)}>{feature.text}</div>
+            ))}
+        </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Features;
+export default Features
+
+
+
+
+
+
+
