@@ -10,7 +10,8 @@ gsap.registerPlugin(ScrollTrigger);
 const Performance = () => {
   const sectionRef = useRef(null);
   const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
-
+  const sectionRef = useRef(null);
+  const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
 
   useGSAP(
     () => {
