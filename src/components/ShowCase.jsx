@@ -1,9 +1,10 @@
 import { useGSAP } from "@gsap/react";
 import { useMediaQuery } from "react-responsive";
+import gsap from "gsap";
 
 const ShowCase = () => {
 
-  const isTablet = useMediaQuery({ query: '(max-width: 1024px'});
+  const isTablet = useMediaQuery({ query: '(max-width: 1024px)' });
 
   useGSAP(() => {
     if(!isTablet) {
@@ -20,16 +21,16 @@ const ShowCase = () => {
       timeline.to('.mask img' , {
         transform: 'scale(1.1)'
 
-      }).to('content', { opacity: 1, y:0, ease: 'power1.in' })
+      }).to('.content', { opacity: 1, y:0, ease: 'power1.in' })
     }
-  }, {isTablet})
+  }, { dependencies: [isTablet], revertOnUpdate: true })
 
   return (
     <section id="showcase">
       <div className="media">
         <video src="/videos/game.mp4" loop muted autoPlay playsInline />
         <div className="mask">
-          <img src="/mask-logo.svg" />
+          <img src="/mask-logo.svg" alt="Mask logo" />
         </div>
       </div>
       <div className="content">
@@ -52,7 +53,7 @@ const ShowCase = () => {
               </p>
               <p>
                 A brand new display engine delivers breathtaking precision,
-                color accuracy and brigtness. And a next-gen GPU with
+                color accuracy and brightness. And a next-gen GPU with
                 hardware-accelerated ray tracing brings console-level graphics
                 to your fingertips.
               </p>
