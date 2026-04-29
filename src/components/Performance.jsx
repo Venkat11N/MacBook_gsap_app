@@ -10,8 +10,6 @@ gsap.registerPlugin(ScrollTrigger);
 const Performance = () => {
   const sectionRef = useRef(null);
   const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
-  const sectionRef = useRef(null);
-  const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
 
   useGSAP(
     () => {
@@ -80,7 +78,7 @@ const Performance = () => {
           images faster, so {''} <span className="text-white"> gaming feels more immersive and realistic than ever. </span>{''}
           And Dynamic Caching optimizes fast on-chip memory to dramatically
           increase average GPU utilization — driving a huge performance boost
-          for the most demanding pro apps and games.
+          for the most demanding pro apps and games.
         </p>
       </div>
     </section>
