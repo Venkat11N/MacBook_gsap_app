@@ -5,13 +5,15 @@ const Footer = () => {
     <footer>
       <div className="info">
         <p>
-          Copyright 2024 Apple Inc. All rights reserved. <span>|</span> Privacy
-          Policy <span>|</span> Terms of Use <span>|</span> Sales and Refunds
-          <span>|</span> Legal <span>|</span> Site Map
+          More ways to shop: Find an Apple Store or other retailer near you. Or call 000800 040 1966.
         </p>
+        <img src="/logo.svg" alt="Apple logo" />
       </div>
       <hr />
       <div className="links">
+        <p>
+          Copyright © 2024 Apple Inc. All rights reserved.
+        </p>
         <ul>
           {footerLinks.map((link, index) => (
             <li key={index}>{link.label}</li>

@@ -4,7 +4,7 @@ import gsap from 'gsap';
 
 const Highlights = () => {
 
-  const isMobile = useMediaQuery({ query: '(max-width: 1024px'});
+  const isMobile = useMediaQuery({ query: '(max-width: 1024px)'});
 
   useGSAP(() => {
     gsap.to(['.left-column', '.right-column'],{
@@ -22,7 +22,7 @@ const Highlights = () => {
 
   return (
     <section id="highlights">
-      <h2>There's never a better been a better time to upgrade.</h2>
+      <h2>There's never been a better time to upgrade.</h2>
       <h3>Here's what you get with the new MacBook Pro.</h3>
       <div className="masonry">
         <div className="left-column">
