@@ -14,7 +14,7 @@ import gsap from "gsap"
 
 const ModelScroll = () => {
   const groupRef = useRef(null)
-  const isMobile = useMediaQuery({ query: '(max-width: 1024px'})
+  const isMobile = useMediaQuery({ query: '(max-width: 1024px)'})
   const {setTexture} = useMacbookStore();
 
 
@@ -26,7 +26,7 @@ const ModelScroll = () => {
         src: feature.videoPath,
         muted: true,
         playsInline: true,
-        prelaod: 'auto',
+        preload: 'auto',
         crossOrigin: "anonymous",
       })
     })
@@ -58,11 +58,12 @@ const ModelScroll = () => {
 
     // 3D SPIN
     if(groupRef.current) {
-    modelTimeline.to(groupRef.current.rotation, {
-      y: Math.PI * 2,
-      ease: 'power1.inOut'
-    },
-    
+      modelTimeline.to(groupRef.current.rotation, {
+        y: Math.PI * 2,
+        ease: 'power1.inOut'
+      });
+    }
+
     // Content & texture sync
     timeline
       .call(() => setTexture('/videos/feature-1.mp4'))
@@ -78,9 +79,9 @@ const ModelScroll = () => {
       .to('.box4', {opacity: 1, y: 0})
 
       .call(() => setTexture('/videos/feature-5.mp4'))
-      .to('.box5', {opacity: 1, y: 0})
-    );
-  }
+      .to('.box5', {opacity: 1, y: 0});
+
+    modelTimeline.add(timeline);
   }, []);
 
 
@@ -112,7 +113,7 @@ const Features = () => {
               <div key={index} className={clsx('box', `box${index + 1}`, feature.styles)}>
                 <img src={feature.icon} alt={feature.highlight} />
                   <p>
-                    <span className="text-shite">{feature.highlight}</span>
+                    <span className="text-white">{feature.highlight}</span>
                     {feature.text}
                   </p>
               </div>
