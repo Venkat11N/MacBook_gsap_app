@@ -1,28 +1,54 @@
+import { useGSAP } from "@gsap/react";
+import { useMediaQuery } from "react-responsive";
+import gsap from 'gsap';
+
 const Highlights = () => {
+
+  const isMobile = useMediaQuery({ query: '(max-width: 1024px'});
+
+  useGSAP(() => {
+    gsap.to(['.left-column', '.right-column'],{
+      scrollTrigger: {
+        trigger: '#highlights',
+        start: isMobile ? 'bottom bottom' : 'top top'
+      },
+      y: 0,
+      opacity: 1,
+      stagger: 0.5,
+      duration: 1,
+      ease: 'power1.inOut'
+    })
+  })
+
   return (
     <section id="highlights">
-      <h2>Highlights</h2>
+      <h2>There's never a better been a better time to upgrade.</h2>
+      <h3>Here's what you get with the new MacBook Pro.</h3>
       <div className="masonry">
         <div className="left-column">
           <div>
-            <p>M4 Chip</p>
+            <img src="/laptop.png" alt="Laptop"/>
+            <p>Fly through demanding tasks up to 9.8x faster.</p>
           </div>
-          <p>Ultra Retina XDR Display</p>
           <div>
-            <p>All-Day Battery Life</p>
+            <img src="/sun.png" alt="Sun"/>
+            <p>A stunning <br/>
+            Liquid Retina XDR
+            display.</p>
           </div>
         </div>
         <div className="right-column">
-          <p>Apple Pencil Pro</p>
           <div className="apple-gradient">
-            <p>
-              <span>Dynamic Caching</span>
+            <img src="/ai.png" alt="AI"/>
+            <p>Build for <br/>
+              <span>Apple Intelligence.</span>
             </p>
           </div>
-          <div>
-            <p>
-              <span className="green-gradient">Thunderbolt 4</span>
-            </p>
+          <div className="apple-gradient">
+            <img src="/battery.png" alt="Battery"/>
+            <p>Up to <span className="green-gradient">{' '}14 more hours{' '}
+              battery life.
+              <span className="text-dark-100">{''}(Up to 24 hours total.)</span></span></p>
           </div>
         </div>
       </div>
